@@ -18,11 +18,40 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-mustache'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.postgresql:postgresql'
+	implementation 'org.projectlombok:lombok'
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+	implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+	implementation 'javax.activation:activation:1.1.1'
+	implementation 'com.sun.xml.bind:jaxb-core'
+	implementation 'com.sun.xml.bind:jaxb-impl'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	dependencies {
+		// Spring Boot Starter Web
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+
+		// Spring Boot Starter Data JPA
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+		// Jackson для JSON
+		implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+		// Jackson Annotations для @JsonView
+		implementation 'com.fasterxml.jackson.core:jackson-annotations'
+
+		// Драйвер базы данных (например, H2)
+		runtimeOnly 'com.h2database:h2'
+
+		// Lombok (если используется)
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+
+		// Тестирование
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	}
 }
 
 tasks.named('test') {
